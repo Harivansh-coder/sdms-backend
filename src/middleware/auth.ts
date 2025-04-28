@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { envVariables } from "@/src/utils/env";
-import { isValidToken } from "../utils/auth";
 
 type JWTPayload = JwtPayload & {
   id: string;

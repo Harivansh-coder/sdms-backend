@@ -2,12 +2,11 @@ import { Router } from "express";
 import {
   getCurrentUserController,
   loginController,
-  logoutController,
   signupController,
-} from "../controllers/auth";
-import validateRequestBody from "../middleware/validate";
+} from "@/src/controllers/auth";
+import validateRequestBody from "@/src/middleware/validate";
 import { loginSchema, signupSchema } from "@/src/schema/auth";
-import { verifyAccessToken } from "../middleware/auth";
+import { verifyAccessToken } from "@/src/middleware/auth";
 
 const authRouter = Router();
 
@@ -19,8 +18,5 @@ authRouter.post("/signup", validateRequestBody(signupSchema), signupController);
 
 // get current logged in user route
 authRouter.get("/me", verifyAccessToken, getCurrentUserController);
-
-// logout route
-authRouter.post("/logout", logoutController);
 
 export default authRouter;

@@ -13,3 +13,85 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DeliveryPartner {
+  id          String        @id @default(uuid())
+  name        String
+  email       String        @unique
+  phone       String
+  status      PartnerStatus @default(ACTIVE)
+  currentLoad Int
+  areas       String[]
+  shiftStart  DateTime
+  shiftEnd    DateTime
+  metrics     Metrics       @relation(fields: [metricsId], references: [id], onDelete: Cascade)
+  metricsId   String        @unique
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Metrics {
+  id              String           @id @default(uuid())
+  partnerId       String           @unique
+  rating          Float
+  completedOrders Int
+  cancelledOrders Int
+  partner         DeliveryPartner?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model Order {
+  id            String      @id @default(uuid())
+  orderNumber   String
+  customerName  String
+  customerPhone String
+  customerAddr  String
+  area          String
+  items         Json
+  status        OrderStatus @default(PENDING)
+  scheduledFor  String
+  assignedTo    String?
+  assignedAt    DateTime?
+  deliveredAt   DateTime?
+  totalAmount   Float
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model Assignment {
+  id         String           @id @default(uuid())
+  orderId    String
+  partnerId  String
+  assignedAt DateTime         @default(now())
+  status     AssignmentStatus @default(PENDING)
+  reason     String?
+}
+
+enum OrderStatus {
+  PENDING
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum PartnerStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum AssignmentStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}

@@ -3,6 +3,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import authRouter from "@/src/routes/auth";
+import ordersRouter from "@/src/routes/orders";
+import partnersRouter from "@/src/routes/partners";
+import assignmentsRouter from "@/src/routes/assignments";
 
 const app = express();
 
@@ -24,6 +27,9 @@ app.get("/ping", (req, res) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/orders", ordersRouter);
+app.use("/api/partners", partnersRouter);
+app.use("/api/assignments", assignmentsRouter);
 
 export default app;
 
