@@ -45,7 +45,7 @@ export const loginController = async (req: Request, res: Response) => {
 };
 
 export const signupController = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   // Check if user already exists
   const existingUser = await prisma.user.findUnique({
@@ -69,6 +69,7 @@ export const signupController = async (req: Request, res: Response) => {
     data: {
       email,
       password: hashedPassword,
+      name,
     },
   });
 
@@ -89,8 +90,9 @@ export const signupController = async (req: Request, res: Response) => {
 };
 
 export const getCurrentUserController = async (req: Request, res: Response) => {
-  const currentUser = req.user;
-  if (!currentUser) {
+  const { id } = req.user;
+
+  if (!id) {
     res.status(401).json({
       status: "error",
       message: "Unauthorized",
@@ -100,8 +102,13 @@ export const getCurrentUserController = async (req: Request, res: Response) => {
 
   // Check if token is valid
   const user = await prisma.user.findUnique({
-    where: { id: currentUser.id },
-    select: { email: true },
+    where: { id: id },
+
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
   });
 
   // incase the user is deleted from the database
@@ -118,7 +125,8 @@ export const getCurrentUserController = async (req: Request, res: Response) => {
     message: "User retrieved successfully",
     data: {
       user: {
-        id: currentUser.id,
+        id: user.id,
+        name: user.name,
         email: user.email,
       },
     },

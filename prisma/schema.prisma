@@ -30,11 +30,11 @@ model DeliveryPartner {
   phone       String
   status      PartnerStatus @default(ACTIVE)
   currentLoad Int
-  areas       String[]
+  areas       Json?
   shiftStart  DateTime
   shiftEnd    DateTime
-  metrics     Metrics       @relation(fields: [metricsId], references: [id], onDelete: Cascade)
-  metricsId   String        @unique
+  metrics     Metrics?      @relation(fields: [metricsId], references: [id], onDelete: Cascade)
+  metricsId   String?       @unique
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 }

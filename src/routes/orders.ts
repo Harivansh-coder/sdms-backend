@@ -5,13 +5,26 @@ import {
   getOrdersController,
   updateOrdersController,
 } from "@/src/controllers/orders";
+import validateRequestBody from "../middleware/validate";
+import { orderSchema, orderUpdateSchema } from "../schema/order";
+import { verifyAccessToken } from "../middleware/auth";
 
 const ordersRouter = Router();
 
-// if the id is null, it will return all orderss
-ordersRouter.get("/:id", getOrdersController);
-ordersRouter.post("/", createOrdersController);
-ordersRouter.put("/:id", updateOrdersController);
-ordersRouter.delete("/:id", deleteOrdersController);
+ordersRouter.get("/", verifyAccessToken, getOrdersController);
+ordersRouter.get("/:id", verifyAccessToken, getOrdersController);
+ordersRouter.post(
+  "/",
+  verifyAccessToken,
+  validateRequestBody(orderSchema),
+  createOrdersController
+);
+ordersRouter.put(
+  "/:id",
+  verifyAccessToken,
+  validateRequestBody(orderUpdateSchema),
+  updateOrdersController
+);
+ordersRouter.delete("/:id", verifyAccessToken, deleteOrdersController);
 
 export default ordersRouter;
