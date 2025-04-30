@@ -2,10 +2,11 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import authRouter from "@/src/routes/auth";
-import ordersRouter from "@/src/routes/orders";
-import partnersRouter from "@/src/routes/partners";
-import assignmentsRouter from "@/src/routes/assignments";
+import authRouter from "./routes/auth";
+import ordersRouter from "./routes/orders";
+import partnersRouter from "./routes/partners";
+import assignmentsRouter from "./routes/assignments";
+import { envVariables } from "./utils/env";
 
 const app = express();
 
@@ -34,7 +35,7 @@ app.use("/api/assignments", assignmentsRouter);
 export default app;
 
 // start server for development environment
-if (process.env.NODE_ENV === "development") {
+if (envVariables.NODE_ENV === "development") {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

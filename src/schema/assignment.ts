@@ -1,10 +1,3 @@
-/*
-
-orderId    String
-  partnerId  String
-  status     AssignmentStatus @default(PENDING)
-*/
-
 import { z } from "zod";
 
 export const assignmentSchema = z.object({

@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCurrentUserController = exports.signupController = exports.loginController = void 0;
-const database_1 = __importDefault(require("@/src/utils/database"));
+const database_1 = __importDefault(require("../utils/database"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const auth_1 = require("@/src/utils/auth");
+const auth_1 = require("../utils/auth");
 const loginController = async (req, res) => {
     const { email, password } = req.body;
     // Check if user exists

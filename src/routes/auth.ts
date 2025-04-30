@@ -3,10 +3,10 @@ import {
   getCurrentUserController,
   loginController,
   signupController,
-} from "@/src/controllers/auth";
-import validateRequestBody from "@/src/middleware/validate";
-import { loginSchema, signupSchema } from "@/src/schema/auth";
-import { verifyAccessToken } from "@/src/middleware/auth";
+} from "../controllers/auth";
+import validateRequestBody from "../middleware/validate";
+import { loginSchema, signupSchema } from "../schema/auth";
+import { verifyAccessToken } from "../middleware/auth";
 
 const authRouter = Router();
 

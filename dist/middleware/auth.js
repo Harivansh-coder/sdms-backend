@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyAccessToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const env_1 = require("@/src/utils/env");
+const env_1 = require("../utils/env");
 const verifyAccessToken = (req, res, next) => {
     // Get access token from header
     const accessToken = req.headers["authorization"]?.split(" ")[1];

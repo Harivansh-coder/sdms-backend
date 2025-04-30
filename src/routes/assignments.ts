@@ -5,7 +5,7 @@ import {
   deleteAssignmentsController,
   getAssignmentsMetricsController,
   updateAssignmentsController,
-} from "@/src/controllers/assignments";
+} from "../controllers/assignments";
 import { verifyAccessToken } from "../middleware/auth";
 import validateRequestBody from "../middleware/validate";
 import { assignmentSchema, assignmentUpdateSchema } from "../schema/assignment";

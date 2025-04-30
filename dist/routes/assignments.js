@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const assignments_1 = require("@/src/controllers/assignments");
+const assignments_1 = require("../controllers/assignments");
 const auth_1 = require("../middleware/auth");
 const validate_1 = __importDefault(require("../middleware/validate"));
 const assignment_1 = require("../schema/assignment");

@@ -1,4 +1,4 @@
-import prisma from "@/src/utils/database";
+import prisma from "../utils/database";
 import { Request, Response } from "express";
 import { Assignment } from "../schema/assignment";
 import dayjs from "dayjs";

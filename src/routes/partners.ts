@@ -4,7 +4,7 @@ import {
   deletePartnerController,
   getPartnerController,
   updatePartnerController,
-} from "@/src/controllers/partners";
+} from "../controllers/partners";
 import { verifyAccessToken } from "../middleware/auth";
 import validateRequestBody from "../middleware/validate";
 import { partnerSchema, partnerUpdateSchema } from "../schema/partner";

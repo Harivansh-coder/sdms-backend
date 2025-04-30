@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletePartnerController = exports.updatePartnerController = exports.createPartnerController = exports.getPartnerController = void 0;
-const database_1 = __importDefault(require("@/src/utils/database"));
+const database_1 = __importDefault(require("../utils/database"));
 const getPartnerController = async (req, res) => {
     const { id } = req.params;
     try {

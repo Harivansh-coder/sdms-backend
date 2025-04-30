@@ -1,4 +1,4 @@
-import prisma from "@/src/utils/database";
+import prisma from "../utils/database";
 import { Request, Response } from "express";
 
 export const getOrdersController = async (req: Request, res: Response) => {

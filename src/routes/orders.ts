@@ -4,7 +4,7 @@ import {
   deleteOrdersController,
   getOrdersController,
   updateOrdersController,
-} from "@/src/controllers/orders";
+} from "../controllers/orders";
 import validateRequestBody from "../middleware/validate";
 import { orderSchema, orderUpdateSchema } from "../schema/order";
 import { verifyAccessToken } from "../middleware/auth";

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAssignmentsMetricsController = exports.deleteAssignmentsController = exports.updateAssignmentsController = exports.createAssignmentsController = exports.getAssignmentsController = void 0;
-const database_1 = __importDefault(require("@/src/utils/database"));
+const database_1 = __importDefault(require("../utils/database"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const getAssignmentsController = async (req, res) => {
     const { id } = req.params;

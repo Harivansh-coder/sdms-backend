@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { envVariables } from "@/src/utils/env";
+import { envVariables } from "../utils/env";
 
 /*
  * Function to generate a JWT token for a user

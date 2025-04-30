@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import prisma from "@/src/utils/database";
+import prisma from "../utils/database";
 import bcrypt from "bcryptjs";
-import { generateToken } from "@/src/utils/auth";
+import { generateToken } from "../utils/auth";
 
 export const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
