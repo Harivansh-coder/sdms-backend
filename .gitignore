@@ -37,7 +37,7 @@ generated/prisma/
 yarn-error.log/
 vendor/
 tmp/
-dist/
+# dist/
 .DS_Store
 .idea
 tmp-resolvers
