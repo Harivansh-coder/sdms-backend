@@ -101,6 +101,16 @@ export const createAssignmentsController = async (
       },
     });
 
+    await prisma.order.update({
+      where: {
+        id: assignmentPayload.orderId,
+      },
+      data: {
+        assignedTo: assignmentPayload.partnerId,
+        assignedAt: new Date(),
+      },
+    });
+
     res.status(201).json({
       status: "success",
       message: "Assignment created successfully",
