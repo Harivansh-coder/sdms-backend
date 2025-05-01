@@ -302,6 +302,28 @@ const getAssignmentsMetricsController = async (req, res) => {
             busy: 0, // If you have busy tracking logic (e.g., currentLoad > 0), compute it here
             offline: availabilityMap["inactive"] ?? 0,
         };
+        const dashboardMetrics = {
+            totalPartners: partnerCount,
+            totalOrders: await database_1.default.order.count(),
+            pendingOrders: await database_1.default.order.count({
+                where: {
+                    status: "PENDING",
+                },
+            }),
+            completedOrders: await database_1.default.order.count({
+                where: {
+                    status: "COMPLETED",
+                },
+            }),
+            successRate: ((await database_1.default.order.count({
+                where: {
+                    status: "COMPLETED",
+                },
+            })) /
+                (await database_1.default.order.count())) *
+                100,
+        };
+        const lastUpdated = new Date().toISOString();
         // Final Response
         res.status(200).json({
             status: "success",
@@ -316,6 +338,8 @@ const getAssignmentsMetricsController = async (req, res) => {
                     averageDeliveryTime,
                     failureReasons,
                 },
+                dashboardMetrics,
+                lastUpdated,
                 partnersMetrics: {
                     totalActive: partnerCount,
                     avgRating: parseFloat((ratingStats._avg.rating ?? 0).toFixed(2)),
