@@ -350,6 +350,31 @@ export const getAssignmentsMetricsController = async (
       offline: availabilityMap["inactive"] ?? 0,
     };
 
+    const dashboardMetrics = {
+      totalPartners: partnerCount,
+      totalOrders: await prisma.order.count(),
+      pendingOrders: await prisma.order.count({
+        where: {
+          status: "PENDING",
+        },
+      }),
+      completedOrders: await prisma.order.count({
+        where: {
+          status: "COMPLETED",
+        },
+      }),
+      successRate:
+        ((await prisma.order.count({
+          where: {
+            status: "COMPLETED",
+          },
+        })) /
+          (await prisma.order.count())) *
+        100,
+    };
+
+    const lastUpdated = new Date().toISOString();
+
     // Final Response
     res.status(200).json({
       status: "success",
@@ -365,6 +390,8 @@ export const getAssignmentsMetricsController = async (
           averageDeliveryTime,
           failureReasons,
         },
+        dashboardMetrics,
+        lastUpdated,
         partnersMetrics: {
           totalActive: partnerCount,
           avgRating: parseFloat((ratingStats._avg.rating ?? 0).toFixed(2)),
