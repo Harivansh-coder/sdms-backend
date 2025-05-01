@@ -33,10 +33,6 @@ exports.orderUpdateSchema = zod_1.default.object({
     status: zod_1.default
         .enum(["PENDING", "ASSIGNED", "IN_PROGRESS", "COMPLETED", "CANCELLED"])
         .optional(),
-    scheduledFor: zod_1.default.string().optional(), // Assuming scheduledFor can be a string or null
-    assignedTo: zod_1.default.string().optional(), // Assuming assignedTo can be a string or null
-    assignedAt: zod_1.default.string().optional(), // Assuming assignedAt can be a string or null
-    deliveredAt: zod_1.default.string().optional(), // Assuming deliveredAt can be a string or null
     totalAmount: zod_1.default
         .number()
         .min(0, "Total amount must be a positive number")

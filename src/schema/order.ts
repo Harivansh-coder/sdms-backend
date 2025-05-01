@@ -29,10 +29,6 @@ export const orderUpdateSchema = z.object({
   status: z
     .enum(["PENDING", "ASSIGNED", "IN_PROGRESS", "COMPLETED", "CANCELLED"])
     .optional(),
-  scheduledFor: z.string().optional(), // Assuming scheduledFor can be a string or null
-  assignedTo: z.string().optional(), // Assuming assignedTo can be a string or null
-  assignedAt: z.string().optional(), // Assuming assignedAt can be a string or null
-  deliveredAt: z.string().optional(), // Assuming deliveredAt can be a string or null
   totalAmount: z
     .number()
     .min(0, "Total amount must be a positive number")
